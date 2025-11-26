@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val gameEngine = GameEngine()
 
-    // *** NEW: Зберігаємо таймер, щоб мати змогу його скасувати/перезапустити ***
+
     private var gameTimer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 4. Встановлюємо обробники натискань
+
         binding.buttonYes.setOnClickListener {
             handleAnswer(true)
         }
@@ -29,23 +29,21 @@ class MainActivity : AppCompatActivity() {
             handleAnswer(false)
         }
 
-        // *** NEW: Обробник для нової кнопки перезапуску ***
-        // (Переконайтеся, що ID у вашому XML - "button_restart")
         binding.buttonRestart.setOnClickListener {
             restartGame()
         }
 
-        // *** NEW: Ховаємо кнопку перезапуску на старті ***
+
         binding.buttonRestart.visibility = View.GONE
 
-        // 5. Запускаємо гру
+
         startGameTimer()
         updateScoreDisplay()
         loadNextRound()
     }
 
     private fun loadNextRound() {
-        // ... (код без змін) ...
+
         val roundData = gameEngine.nextRound()
         binding.tvColorName.text = roundData.leftText
         binding.tvColor.text = roundData.rightText
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleAnswer(userAnswer: Boolean) {
-        // ... (код без змін) ...
+
         val wasCorrect = gameEngine.checkAnswer(userAnswer)
         if (wasCorrect) {
             Toast.makeText(this, "Правильно!", Toast.LENGTH_SHORT).show()
@@ -65,6 +63,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateScoreDisplay() {
+        binding.progressBar.max = gameEngine.totalAnswers
+        binding.progressBar.progress = gameEngine.score
         binding.score.text = "Рахунок: ${gameEngine.score}"
     }
 

@@ -1,6 +1,10 @@
 package com.example.pz_3_shynkarenko
 
 class GameEngine {
+    // Added answers score
+    var totalAnswers = 0
+        private set
+
     var score = 0
         private set
 
@@ -31,6 +35,7 @@ class GameEngine {
     }
 
     fun checkAnswer(userAnswer: Boolean): Boolean {
+        totalAnswers++
         val wasCorrect = (userAnswer == isCurrentAnswerCorrect)
         if (wasCorrect) {
             score++
@@ -40,6 +45,7 @@ class GameEngine {
 
     fun resetGame() {
         score = 0
+        totalAnswers = 0
     }
 }
 
