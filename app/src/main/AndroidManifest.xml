@@ -13,6 +13,10 @@
         android:theme="@style/Theme.PZ_3_Shynkarenko">
         <activity
             android:name=".MainActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".RegistrationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
