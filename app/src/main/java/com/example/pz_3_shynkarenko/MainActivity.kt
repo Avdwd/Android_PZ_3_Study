@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private val gameEngine = GameEngine()
     private var gameTimer: CountDownTimer? = null
     private var currentUserEmail: String? = null
+    private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvColorName.text = roundData.leftText
         binding.tvColor.text = roundData.rightText
         binding.tvColor.setTextColor(roundData.rightTextColorValue)
+        count++
     }
 
     private fun handleAnswer(userAnswer: Boolean) {
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateScoreDisplay() {
-        binding.progressBar.max = 100
+        binding.progressBar.max = count
         binding.progressBar.progress = gameEngine.score
         binding.score.text = "Рахунок: ${gameEngine.score}"
     }
@@ -116,8 +118,9 @@ class MainActivity : AppCompatActivity() {
         binding.buttonNo.visibility = View.GONE
 
         binding.buttonRestart.visibility = View.VISIBLE
-
         saveGameResults()
+
+        count = 0
     }
 
     private fun saveGameResults() {
