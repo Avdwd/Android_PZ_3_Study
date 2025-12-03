@@ -1,7 +1,7 @@
 package com.example.pz_3_shynkarenko
 
 class GameEngine {
-    // Added answers score
+
     var totalAnswers = 0
         private set
 
@@ -46,6 +46,11 @@ class GameEngine {
     fun resetGame() {
         score = 0
         totalAnswers = 0
+    }
+
+    fun restoreState(savedScore: Int, savedTotalAnswers: Int) {
+        score = savedScore
+        totalAnswers = savedTotalAnswers
     }
 }
 
